@@ -1,0 +1,22 @@
+{
+  "name": "problemas",
+  "version": "1.0.0",
+  "description": "problemas de programacion resuletas\u001b[D\u001b[D\u001bel\u001b[C\u001b[C\u001b[C",
+  "main": "index.js",
+  "scripts": {
+    "test": "index,js\u001b[D\u001b[.\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[Cnode \u001b[C\u001b[Cindex.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lili-HC/Lab1_practica1.git"
+  },
+  "author": "Liliana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lili-HC/Lab1_practica1/issues"
+  },
+  "homepage": "https://github.com/Lili-HC/Lab1_practica1#readme",
+  "dependencies": {
+    "mustache": "^4.1.0"
+  }
+}
