@@ -1,43 +1,51 @@
-//Resolviendo el Problema Nro 2
-let cade = prompt("Escriba una cadena");
-document.write("<b>"+"La nueva cadena es:"+"</b>");
-document.write("<p><b>"+ invertirparentesis(cade)+"</b></p>");
-function invertirparentesis(cadena) 
+//Resolviendo el Problema Nro 3
+let cad =prompt("Escriba una cadena");
+function permutacionesCadena(cadena) 
 {
-    var cadenaFinal = "";
-    while(cadena.indexOf('(') > -1) 
-    {    
-        if(cadena.charAt(0) !== '(' && cadena.charAt(0) !== ')') 
-        {
-            cadenaFinal = cadenaFinal + cadena.charAt(0);
-            cadena = cadena.substring(0+1,cadena.length);
-        } 
-        else 
-        {    
-            if(cadena.charAt(0) === ')') 
-            {
-                cadena= cadena.substring(0+1,cadena.length);
-            } 
-            else 
-            {
-                var abriendoParenSiguiente = cadena.indexOf('(', 1);
-                var cerrandoParen = cadena.indexOf(')');
-                if(abriendoParenSiguiente !== -1 && abriendoParenSiguiente < cerrandoParen) 
-                {                    
-                    cadenaFinal = cadenaFinal + cadena.substring(abriendoParenSiguiente+1, cerrandoParen).split('').join('');
-                    var part_1 = cadena.slice(0,abriendoParenSiguiente);
-                    var part_2 = cadena.substring(cerrandoParen+1, cadena.length);
-                    cadena = part_1 + part_2;
-                } 
-                else 
-                {
-                    var cadenaInvertida = cadena.substring(1,cerrandoParen);
-                    cadenaFinal = cadenaFinal + cadenaInvertida.split('').reverse().join('');
-                    cadena = cadena.substring(cerrandoParen+1, cadena.length);
-                }
-            }  
-        }
+    if(typeof cadena != 'string')
+    {
+        throw TypeError("El texto ingresado debe ser una cadena de caracteres.");
     }
-    cadenaFinal = cadenaFinal + cadena;
-    return cadenaFinal;
+    if(cadena.length <= 2)
+    {
+        return cadena.length===2? [cadena, cadena[1] + cadena[0]] : [cadena];
+    }
+    return cadena.split('')
+        .reduce((a, c, i) =>
+            a.concat(permutacionesCadena(cadena.slice(0,i) + cadena.slice(i+1))
+                .map(v => c+v))
+            ,[]);
+}
+try{
+    console.log(permutacionesCadena(cad));
+} catch (e){
+    console.log('Error: $(e.message)');
+}
+function palindromo(per)
+{
+        per=per.replace(/ /g,"")
+        for(var j=0;j<per.length;j++)
+        {
+            if(per[j]!=per[per.length-j-1])
+            {
+                 return false;
+            }
+        }
+        return true;
+}
+let permutaciones=[];
+permutaciones=permutacionesCadena(cad);
+//console.log(permutaciones);
+for(let i=0;i<permutaciones.length;i++)
+{
+    if(palindromo(permutaciones[i]))
+    {
+        document.write('La cadena '+'<p><b>'+cad+'</b></p>'+' se reordena a '+'<p><b>'+permutaciones[i]+'</b></p>'+' por lo cual es palindromo');
+        break;
+    }
+    else
+    {
+        if(i+1==permutaciones.length)
+            document.write('La cadena '+'<p><b>'+cad+'</b></p>'+' no es palindromo a pesar de intentar reordenarla');
+    }
 }
